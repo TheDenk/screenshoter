@@ -1,5 +1,5 @@
 # screenshoter
-The script makes screenshot when pressing the shift key.
+The script makes screenshot when pressing the shift key and save it in folder with .PNG format.
 Keys:
 1. Shift - save
 2. Esc - exit

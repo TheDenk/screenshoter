@@ -2,11 +2,9 @@
 
 import os
 import glob
-import time
 import argparse
 
 import cv2
-import numpy as np
 import keyboard as k
 import autopy
 
@@ -23,7 +21,7 @@ def main():
 
     image_counts = 0
 
-    files = glob.glob(args.images_dir + '/*.png')
+    files = glob.glob(args.images_dir + '/*')
 
     if len(files) > 0:
         nums = []
@@ -37,16 +35,12 @@ def main():
         if k.is_pressed('shift'):
             img_name = str(image_counts) + '.png'
             img = autopy.bitmap.capture_screen()
-            original_w, original_h = autopy.screen.size()
-            img = np.fromstring(img, dtype='uint8').reshape((int(original_h), int(original_w), 3))
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            img = np.fromstring(img, dtype='uint8').reshape((h, w, 3))
 
             file_path = os.path.join(args.images_dir, img_name)
             cv2.imwrite(file_path, img)
             print('image {} is grabbed.'.format(img_name))
             image_counts += 1
-
-            time.sleep(0.1)
         elif k.is_pressed('esc'):
             break
 
