@@ -61,7 +61,8 @@ def main():
     while not SAVE_AND_EXIT:
         if RUN:
             img = autopy.bitmap.capture_screen()
-            img = np.fromstring(img, dtype='uint8').reshape((h, w, 3))
+            original_w, original_h = autopy.screen.size()
+            img = np.fromstring(img, dtype='uint8').reshape((int(original_h), int(original_w), 3))
             img = cv2.resize(img, (w, h))
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             writer.write(img)
