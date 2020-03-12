@@ -1,0 +1,4 @@
+keyboard
+opencv-python
+numpy
+autopy
